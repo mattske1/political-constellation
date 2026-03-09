@@ -8,6 +8,8 @@
 
 ## The Idea
 
+<img width="825" height="659" alt="write-in-freedom-political-constellation" src="https://github.com/user-attachments/assets/809fae49-9a71-458c-b332-6340bfd5e9b4" />
+
 The left/right political spectrum is a convenient lie. You might be strongly progressive on healthcare, undecided on immigration, and conservative on taxes — with wildly different levels of conviction on each. Averaging that into a single dot on a line erases everything interesting about what you actually believe.
 
 Political Constellation gives each issue **four dimensions**:
