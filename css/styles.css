@@ -1,0 +1,298 @@
+/*  Political Constellation — Styles
+ *  A neutral, dark-accented design system.
+ *  Override the custom properties below to re-skin easily.
+ * ──────────────────────────────────────────────────────── */
+
+/* ── Design Tokens ────────────────────────────────────── */
+:root {
+  --pc-bg-dark:     #0A1E41;
+  --pc-accent:      #B22234;
+  --pc-gold:        #b08d1e;
+  --pc-gold-pale:   #f5f0e0;
+  --pc-white:       #FFFFFF;
+  --pc-off-white:   #F4F7F9;
+  --pc-text:        #2a2a2a;
+  --pc-muted:       #6a6a6a;
+  --pc-blue:        #3D6EA5;
+}
+
+/* ── Reset ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--pc-white);
+  color: var(--pc-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero {
+  background: var(--pc-bg-dark);
+  color: var(--pc-white);
+  padding: 50px 40px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(178,34,52,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(176,141,30,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-content { position: relative; max-width: 900px; margin: 0 auto; }
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-style: italic;
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+}
+.app-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 35px;
+  min-height: 700px;
+}
+
+/* ── Control Panel (left) ─────────────────────────────── */
+.control-panel {
+  background: var(--pc-off-white);
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  height: fit-content;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.panel-header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+}
+.panel-title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--pc-gold);
+}
+.panel-subtitle {
+  font-size: 0.75rem;
+  color: var(--pc-muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ── Issue Accordion ──────────────────────────────────── */
+.issue-item {
+  background: var(--pc-white);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.issue-header {
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+.issue-header:hover { background: #f9f9f9; }
+.issue-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--pc-bg-dark);
+}
+.issue-expand {
+  font-size: 0.8rem;
+  color: var(--pc-muted);
+  transition: transform 0.3s;
+}
+.issue-item.expanded .issue-expand { transform: rotate(180deg); }
+.issue-controls {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #fafafa;
+}
+.issue-item.expanded .issue-controls { max-height: 400px; }
+.issue-controls-inner { padding: 18px 16px; }
+
+/* ── Sliders ──────────────────────────────────────────── */
+.dimension-control { margin-bottom: 18px; }
+.dimension-control:last-child { margin-bottom: 0; }
+.dimension-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--pc-text);
+  margin-bottom: 6px;
+  display: block;
+}
+.dimension-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #e0e0e0;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+.dimension-slider.position {
+  background: linear-gradient(to right, var(--pc-blue), var(--pc-muted), var(--pc-accent));
+}
+.dimension-slider.authority {
+  background: linear-gradient(to right, var(--pc-gold), #888, var(--pc-bg-dark));
+}
+
+/* Thumb — WebKit */
+.dimension-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; height: 16px;
+  background: var(--pc-bg-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dimension-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 5px rgba(10,30,65,0.1);
+}
+/* Thumb — Firefox */
+.dimension-slider::-moz-range-thumb {
+  width: 16px; height: 16px;
+  background: var(--pc-bg-dark);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  color: var(--pc-muted);
+}
+.slider-value {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--pc-bg-dark);
+  font-weight: 600;
+  margin-top: 3px;
+  min-height: 16px;
+}
+
+/* ── Visualization Panel (right) ──────────────────────── */
+.viz-panel {
+  background: var(--pc-bg-dark);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+.viz-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.viz-title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--pc-gold);
+  margin-bottom: 5px;
+}
+.viz-instruction {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+}
+#canvas-container {
+  flex: 1;
+  position: relative;
+}
+#shape-canvas {
+  width: 100%; height: 100%;
+  cursor: grab;
+}
+#shape-canvas:active { cursor: grabbing; }
+
+.viz-legend {
+  padding: 18px 22px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.legend-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--pc-gold);
+  margin-bottom: 10px;
+}
+.legend-text {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+/* ── Insight Box ──────────────────────────────────────── */
+.insight-box {
+  background: var(--pc-gold-pale);
+  border-left: 4px solid var(--pc-gold);
+  padding: 22px 26px;
+  margin: 30px 0 0;
+  border-radius: 0 8px 8px 0;
+}
+.insight-box p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--pc-text);
+  margin-bottom: 12px;
+}
+.insight-box p:last-child { margin-bottom: 0; }
+.insight-box strong {
+  color: var(--pc-bg-dark);
+  font-weight: 700;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .viz-panel { min-height: 500px; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 35px 20px 30px; }
+  .hero h1 { font-size: 2rem; }
+  .container { padding: 20px; }
+}
